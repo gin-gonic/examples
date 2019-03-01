@@ -4,7 +4,7 @@ This repository contains a number of ready-to-run examples demonstrating various
 
 Refer to the [Gin documentation](https://gin-gonic.com/docs/) for how to execute the example tutorials.
 
-# Contributing
+## Contributing
 
 Are you missing an example? Please feel free to open an issue or commit one pull request.
 

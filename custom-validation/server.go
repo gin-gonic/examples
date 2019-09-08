@@ -22,7 +22,7 @@ func bookableDate(
 ) bool {
 	if date, ok := field.Interface().(time.Time); ok {
 		today := time.Now()
-		if today.Year() > date.Year() || today.YearDay() > date.YearDay() {
+		if today.Year() > date.Year() || (today.Year() == date.Year() && today.YearDay() > date.YearDay()) {
 			return false
 		}
 	}

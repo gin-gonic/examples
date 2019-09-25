@@ -5,11 +5,13 @@ import (
 	"io"
 	"math/rand"
 	"net/http"
-
 	"github.com/gin-gonic/gin"
 )
 
+var roomManager *Manager
+
 func main() {
+	roomManager = NewRoomManager()
 	router := gin.Default()
 	router.SetHTMLTemplate(html)
 
@@ -23,8 +25,8 @@ func main() {
 
 func stream(c *gin.Context) {
 	roomid := c.Param("roomid")
-	listener := openListener(roomid)
-	defer closeListener(roomid, listener)
+	listener := roomManager.OpenListener(roomid)
+	defer roomManager.CloseListener(roomid, listener)
 
 	clientGone := c.Writer.CloseNotify()
 	c.Stream(func(w io.Writer) bool {
@@ -51,7 +53,7 @@ func roomPOST(c *gin.Context) {
 	roomid := c.Param("roomid")
 	userid := c.PostForm("user")
 	message := c.PostForm("message")
-	room(roomid).Submit(userid + ": " + message)
+	roomManager.Submit(userid, roomid, message)
 
 	c.JSON(http.StatusOK, gin.H{
 		"status":  "success",
@@ -61,5 +63,5 @@ func roomPOST(c *gin.Context) {
 
 func roomDELETE(c *gin.Context) {
 	roomid := c.Param("roomid")
-	deleteBroadcast(roomid)
+	roomManager.DeleteBroadcast(roomid)
 }

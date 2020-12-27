@@ -9,25 +9,25 @@ This is a complete example to create a single binary with the
 
 ### Prepare Packages
 
-```
+```sh
 go get github.com/gin-gonic/gin
 go get github.com/jessevdk/go-assets-builder
 ```
 
 ### Generate assets.go
 
-```
+```sh
 go-assets-builder html -o assets.go
 ```
 
 ### Build the server
 
-```
+```sh
 go build -o assets-in-binary
 ```
 
 ### Run
 
-```
+```sh
 ./assets-in-binary
 ```

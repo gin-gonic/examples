@@ -1,4 +1,4 @@
-# A simple reverse proxy.
+# A simple reverse proxy
 
 We can see real server in real_server.go and proxy server in reverse_server.go
 

@@ -1,6 +1,6 @@
 module github.com/gin-gonic/examples
 
-go 1.14
+go 1.16
 
 require (
 	github.com/dustin/go-broadcast v0.0.0-20171205050544-f664265f5a66

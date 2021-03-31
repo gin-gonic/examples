@@ -8,10 +8,11 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func main() {
-	//go:embed assets/* templates/*
-	var f embed.FS
+//go:embed assets/* templates/*
+var f embed.FS
 
+func main() {
+	
 	router := gin.Default()
 	templ := template.Must(template.New("").ParseFS(f, "templates/*.tmpl", "templates/foo/*.tmpl"))
 	router.SetHTMLTemplate(templ)

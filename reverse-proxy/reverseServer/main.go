@@ -44,7 +44,7 @@ func main() {
 		transport := http.DefaultTransport
 		resp, err := transport.RoundTrip(req)
 		if err != nil {
-			log.Printf("error in roundtrip: %v", resp)
+			log.Printf("error in roundtrip: %v", err)
 			c.String(500, "error")
 			return
 		}

@@ -15,12 +15,12 @@ import (
 
 func main() {
 	// Create context that listens for the interrupt signal from the OS.
-	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt)
+	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, os.Kill)
 	defer stop()
 
 	router := gin.Default()
 	router.GET("/", func(c *gin.Context) {
-		time.Sleep(10 * time.Second)
+		time.Sleep(5 * time.Second)
 		c.String(http.StatusOK, "Welcome Gin Server")
 	})
 

@@ -20,7 +20,7 @@ func main() {
 
 	router := gin.Default()
 	router.GET("/", func(c *gin.Context) {
-		time.Sleep(5 * time.Second)
+		time.Sleep(10 * time.Second)
 		c.String(http.StatusOK, "Welcome Gin Server")
 	})
 
@@ -49,7 +49,7 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	if err := srv.Shutdown(ctx); err != nil {
-		log.Fatal("Server forced to shutdown:", err)
+		log.Fatal("Server forced to shutdown: ", err)
 	}
 
 	log.Println("Server exiting")

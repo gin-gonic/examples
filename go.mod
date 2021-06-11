@@ -6,7 +6,9 @@ require (
 	github.com/dustin/go-broadcast v0.0.0-20171205050544-f664265f5a66
 	github.com/fatih/color v1.9.0
 	github.com/gin-gonic/autotls v0.0.0-20190406003154-fb31fc47f521
+	github.com/gin-gonic/contrib v0.0.0-20201101042839-6a891bf89f19
 	github.com/gin-gonic/gin v1.7.2
+	github.com/go-cas/cas v2.1.0+incompatible
 	github.com/go-playground/validator/v10 v10.4.1
 	github.com/golang/protobuf v1.3.3
 	github.com/jessevdk/go-assets v0.0.0-20160921144138-4f4301a06e15
@@ -20,5 +22,6 @@ require (
 	golang.org/x/net v0.0.0-20190620200207-3b0461eec859
 	golang.org/x/sync v0.0.0-20190423024810-112230192c58
 	google.golang.org/grpc v1.25.1
+	gopkg.in/cas.v2 v2.2.2 // indirect
 	gopkg.in/go-playground/validator.v8 v8.18.2
 )

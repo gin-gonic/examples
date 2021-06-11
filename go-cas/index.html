@@ -1,0 +1,34 @@
+<html>
+<head>
+	<script>
+		function getCookie(name) {
+			let nameEQ = name + "=";
+			let ca = document.cookie.split(';');
+			for(let i=0;i < ca.length;i++) {
+				let c = ca[i];
+				while (c.charAt(0) === ' ') {
+					c = c.substring(1,c.length);
+				}
+				if (c.indexOf(nameEQ) === 0) {
+					return c.substring(nameEQ.length,c.length);
+				}
+			}
+			return "";
+		}
+		function printSessionId() {
+			let cookie = getCookie("_my_session_id");
+			document.write("" + cookie);
+		}
+	</script>
+	<meta charset="UTF-8">
+	<title>POC CAS 3</title>
+</head>
+<title>GO-GAS-GIN-GONIC</title>
+</head>
+<body>
+<div style="text-align:center;">You're logged in</div>
+<div style="text-align:center;">Your session ID : <script>printSessionId();</script></div>
+<br><br>
+<div style="text-align:center;"><a href="/logout">Logout</a></div>
+</body>
+<html>

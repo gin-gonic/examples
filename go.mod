@@ -20,5 +20,4 @@ require (
 	golang.org/x/net v0.0.0-20190620200207-3b0461eec859
 	golang.org/x/sync v0.0.0-20190423024810-112230192c58
 	google.golang.org/grpc v1.25.1
-	gopkg.in/go-playground/validator.v8 v8.18.2
 )

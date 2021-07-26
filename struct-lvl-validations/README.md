@@ -45,6 +45,6 @@ $ curl -X POST http://localhost:8085/user \
 
 ### Useful links
 
-- [Validator docs](https://godoc.org/gopkg.in/go-playground/validator.v8#Validate.RegisterStructValidation)
-- [Struct level example](https://github.com/go-playground/validator/blob/v8.18.2/examples/struct-level/struct_level.go)
-- [Validator release notes](https://github.com/go-playground/validator/releases/tag/v8.7)
+- [Validator docs](https://pkg.go.dev/github.com/go-playground/validator/v10#Validate.RegisterStructValidation)
+- [Struct level example](https://github.com/go-playground/validator/blob/master/_examples/struct-level/main.go)
+- [Validator release notes](https://github.com/go-playground/validator/releases/tag/v10.7.0)

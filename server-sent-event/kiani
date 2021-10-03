@@ -1,0 +1,5 @@
+for run go run main.go
+http://localhost:8085/stream
+
+user: admin
+pass :admin123

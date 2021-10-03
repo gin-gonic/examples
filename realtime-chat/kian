@@ -1,0 +1,8 @@
+double click on realtime-chat
+possess name in system monitor = realtime-chat for end task
+in chrome 
+http://localhost:8080/room/:roomid
+
+
+
+akiani@ubuntuki:~/Documents/GitHub/examples/realtime-chat$ make build

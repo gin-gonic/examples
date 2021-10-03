@@ -12,12 +12,14 @@ import (
 const (
 	// this is our reverse server ip address
 	ReverseServerAddr = "127.0.0.1:2002"
+	// ReverseServerAddr = "192.168.213.128:2002"
 )
 
 var (
 	// maybe we can have many real server addresses and do some load balanced strategy.
 	RealAddr = []string{
 		"http://127.0.0.1:2003",
+		// "http://192.168.213.128:2003",
 	}
 )
 

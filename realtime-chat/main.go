@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
+	"github.com/gin-gonic/gin"
 	"io"
 	"math/rand"
 	"net/http"
-	"github.com/gin-gonic/gin"
 )
 
 var roomManager *Manager

@@ -5,6 +5,7 @@ import (
 	"io"
 	"math/rand"
 	"net/http"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -28,7 +29,7 @@ func stream(c *gin.Context) {
 	listener := roomManager.OpenListener(roomid)
 	defer roomManager.CloseListener(roomid, listener)
 
-	clientGone := c.Writer.CloseNotify()
+	clientGone := c.Request.Context().Done()
 	c.Stream(func(w io.Writer) bool {
 		select {
 		case <-clientGone:

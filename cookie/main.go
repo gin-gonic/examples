@@ -23,17 +23,17 @@ func CookieTool() gin.HandlerFunc {
 }
 
 func main() {
-	route := gin.Default()
+	router := gin.Default()
 
-	route.GET("/login", func(c *gin.Context) {
+	router.GET("/login", func(c *gin.Context) {
 		// Set cookie {"label": "ok" }, maxAge 30 seconds.
 		c.SetCookie("label", "ok", 30, "/", "localhost", false, true)
 		c.String(200, "Login success!")
 	})
 
-	route.GET("/home", CookieTool(), func(c *gin.Context) {
+	router.GET("/home", CookieTool(), func(c *gin.Context) {
 		c.JSON(200, gin.H{"data": "Your home page"})
 	})
 
-	route.Run(":8080")
+	router.Run(":8080")
 }

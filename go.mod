@@ -9,6 +9,7 @@ require (
 	github.com/gin-gonic/gin v1.7.2
 	github.com/go-playground/validator/v10 v10.4.1
 	github.com/golang/protobuf v1.3.3
+	github.com/gorilla/websocket v1.5.0 // indirect
 	github.com/jessevdk/go-assets v0.0.0-20160921144138-4f4301a06e15
 	github.com/manucorporat/stats v0.0.0-20180402194714-3ba42d56d227
 	github.com/newrelic/go-agent v2.7.0+incompatible

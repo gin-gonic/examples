@@ -4,14 +4,18 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/thinkerou/favicon"
 )
 
 func main() {
 	app := gin.Default()
-	app.Use(favicon.New("./favicon.ico"))
+
+	// serve static favicon file from a location relative to main.go directory
+	//app.StaticFile("/favicon.ico", "./.assets/favicon.ico")
+	app.StaticFile("/favicon.ico", "./favicon.ico")
+
 	app.GET("/ping", func(c *gin.Context) {
 		c.String(http.StatusOK, "Hello favicon.")
 	})
+
 	app.Run(":8080")
 }

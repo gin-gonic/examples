@@ -25,7 +25,7 @@ type User struct {
 // hooks right into validator and you can combine with validation tags and still have a
 // common error output format.
 func UserStructLevelValidation(sl validator.StructLevel) {
-	//user := structLevel.CurrentStruct.Interface().(User)
+	// user := structLevel.CurrentStruct.Interface().(User)
 	user := sl.Current().Interface().(User)
 
 	if len(user.FirstName) == 0 && len(user.LastName) == 0 {

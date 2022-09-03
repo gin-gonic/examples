@@ -44,7 +44,6 @@ func roomGET(c *gin.Context) {
 		"nick":      nick,
 		"timestamp": time.Now().Unix(),
 	})
-
 }
 
 func roomPOST(c *gin.Context) {

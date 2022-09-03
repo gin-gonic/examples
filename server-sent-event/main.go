@@ -72,7 +72,7 @@ func main() {
 		})
 	})
 
-	//Parse Static files
+	// Parse Static files
 	router.StaticFile("/", "./public/index.html")
 
 	router.Run(":8085")
@@ -80,7 +80,6 @@ func main() {
 
 // Initialize event and Start procnteessing requests
 func NewServer() (event *Event) {
-
 	event = &Event{
 		Message:       make(chan string),
 		NewClients:    make(chan chan string),

@@ -39,8 +39,17 @@ Second Step: run gin server
 go run gin/main.go
 ```
 
-Testing command.
+## Testing
+
+Send data to gin server:
 
 ```sh
-curl -v 'http://localhost:8052/rest/n/thinkerou'
+curl -v 'http://localhost:8080/rest/n/gin'
+```
+
+or using [grpcurl](https://github.com/fullstorydev/grpcurl) command:
+
+```sh
+grpcurl -d '{"name": "gin"}' \
+  -plaintext localhost:50051 helloworld.v1.Greeter/SayHello
 ```

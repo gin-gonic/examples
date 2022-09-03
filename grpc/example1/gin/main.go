@@ -5,8 +5,8 @@ import (
 	"log"
 	"net/http"
 
+	v1 "github.com/gin-gonic/examples/grpc/example1/gen/pb"
 	"github.com/gin-gonic/gin"
-	pb "github.com/gin-gonic/examples/grpc/pb"
 	"google.golang.org/grpc"
 )
 
@@ -17,7 +17,7 @@ func main() {
 		log.Fatalf("did not connect: %v", err)
 	}
 	defer conn.Close()
-	client := pb.NewGreeterClient(conn)
+	client := v1.NewGreeterClient(conn)
 
 	// Set up a http server.
 	r := gin.Default()
@@ -25,7 +25,7 @@ func main() {
 		name := c.Param("name")
 
 		// Contact the server and print out its response.
-		req := &pb.HelloRequest{Name: name}
+		req := &v1.HelloRequest{Name: name}
 		res, err := client.SayHello(c, req)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{
@@ -40,7 +40,7 @@ func main() {
 	})
 
 	// Run http server
-	if err := r.Run(":8052"); err != nil {
+	if err := r.Run(":8080"); err != nil {
 		log.Fatalf("could not run server: %v", err)
 	}
 }

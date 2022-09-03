@@ -9,9 +9,7 @@ import (
 	"golang.org/x/sync/errgroup"
 )
 
-var (
-	g errgroup.Group
-)
+var g errgroup.Group
 
 func router01() http.Handler {
 	e := gin.New()

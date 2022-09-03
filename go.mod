@@ -12,7 +12,6 @@ require (
 	github.com/manucorporat/stats v0.0.0-20180402194714-3ba42d56d227
 	github.com/mattn/go-colorable v0.1.12 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
-	github.com/newrelic/go-agent v3.17.0+incompatible
 	github.com/pelletier/go-toml/v2 v2.0.2 // indirect
 	github.com/stretchr/testify v1.7.2
 	go.uber.org/ratelimit v0.2.0

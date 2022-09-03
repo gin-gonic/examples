@@ -24,7 +24,7 @@ func main() {
 
 	router.GET("/raw", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "raw.tmpl", gin.H{
-			"now": time.Date(2017, 07, 01, 0, 0, 0, 0, time.UTC),
+			"now": time.Date(2017, 0o7, 0o1, 0, 0, 0, 0, time.UTC),
 		})
 	})
 

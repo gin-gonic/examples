@@ -2,16 +2,17 @@ package main
 
 import (
 	"fmt"
-	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
 	"time"
+
+	"github.com/gin-gonic/gin"
 )
 
-func main(){
+func main() {
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 	r := gin.Default()
-	r.GET("/test_stream", func(c *gin.Context){
+	r.GET("/test_stream", func(c *gin.Context) {
 		w := c.Writer
 		header := w.Header()
 		header.Set("Transfer-Encoding", "chunked")
@@ -22,10 +23,10 @@ func main(){
 					<body>
 		`))
 		w.(http.Flusher).Flush()
-		for i:=0 ;i<10; i++{
+		for i := 0; i < 10; i++ {
 			w.Write([]byte(fmt.Sprintf(`
 				<h1>%d</h1>
-			`,i)))
+			`, i)))
 			w.(http.Flusher).Flush()
 			time.Sleep(time.Duration(1) * time.Second)
 		}

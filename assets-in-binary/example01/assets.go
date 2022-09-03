@@ -6,8 +6,10 @@ import (
 	"github.com/jessevdk/go-assets"
 )
 
-var _Assetsbfa8d115ce0617d89507412d5393a462f8e9b003 = "<!doctype html>\n<body>\n  <p>Can you see this? → {{.Bar}}</p>\n</body>\n"
-var _Assets3737a75b5254ed1f6d588b40a3449721f9ea86c2 = "<!doctype html>\n<body>\n  <p>Hello, {{.Foo}}</p>\n</body>\n"
+var (
+	_Assetsbfa8d115ce0617d89507412d5393a462f8e9b003 = "<!doctype html>\n<body>\n  <p>Can you see this? → {{.Bar}}</p>\n</body>\n"
+	_Assets3737a75b5254ed1f6d588b40a3449721f9ea86c2 = "<!doctype html>\n<body>\n  <p>Hello, {{.Foo}}</p>\n</body>\n"
+)
 
 // Assets returns go-assets FileSystem
 var Assets = assets.NewFileSystem(map[string][]string{"/": {"html"}, "/html": {"bar.tmpl", "index.tmpl"}}, map[string]*assets.File{
@@ -31,4 +33,5 @@ var Assets = assets.NewFileSystem(map[string][]string{"/": {"html"}, "/html": {"
 		FileMode: 0x1a4,
 		Mtime:    time.Unix(1524365491, 1524365491289995821),
 		Data:     []byte(_Assets3737a75b5254ed1f6d588b40a3449721f9ea86c2),
-	}}, "")
+	},
+}, "")

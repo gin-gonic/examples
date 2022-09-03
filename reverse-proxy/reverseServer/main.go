@@ -14,12 +14,10 @@ const (
 	ReverseServerAddr = "127.0.0.1:2002"
 )
 
-var (
-	// maybe we can have many real server addresses and do some load balanced strategy.
-	RealAddr = []string{
-		"http://127.0.0.1:2003",
-	}
-)
+// maybe we can have many real server addresses and do some load balanced strategy.
+var RealAddr = []string{
+	"http://127.0.0.1:2003",
+}
 
 // a fake function that we can do strategy here.
 func getLoadBalanceAddr() string {

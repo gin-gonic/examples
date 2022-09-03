@@ -7,29 +7,29 @@ import (
 type Message struct {
 	UserId string
 	RoomId string
-	Text string
+	Text   string
 }
 
 type Listener struct {
 	RoomId string
-	Chan chan interface{}
+	Chan   chan interface{}
 }
 
 type Manager struct {
 	roomChannels map[string]broadcast.Broadcaster
-	open chan *Listener
-	close chan *Listener
-	delete chan string
-	messages chan *Message
+	open         chan *Listener
+	close        chan *Listener
+	delete       chan string
+	messages     chan *Message
 }
 
 func NewRoomManager() *Manager {
 	manager := &Manager{
 		roomChannels: make(map[string]broadcast.Broadcaster),
-		open: make(chan *Listener, 100),
-		close: make(chan *Listener, 100),
-		delete: make(chan string, 100),
-		messages: make(chan *Message, 100),
+		open:         make(chan *Listener, 100),
+		close:        make(chan *Listener, 100),
+		delete:       make(chan string, 100),
+		messages:     make(chan *Message, 100),
 	}
 
 	go manager.run()
@@ -39,14 +39,14 @@ func NewRoomManager() *Manager {
 func (m *Manager) run() {
 	for {
 		select {
-			case listener := <- m.open:
-				m.register(listener)
-			case listener := <- m.close:
-				m.deregister(listener)
-			case roomid := <- m.delete:
-				m.deleteBroadcast(roomid)
-			case message := <- m.messages:
-				m.room(message.RoomId).Submit(message.UserId + ": " + message.Text)
+		case listener := <-m.open:
+			m.register(listener)
+		case listener := <-m.close:
+			m.deregister(listener)
+		case roomid := <-m.delete:
+			m.deleteBroadcast(roomid)
+		case message := <-m.messages:
+			m.room(message.RoomId).Submit(message.UserId + ": " + message.Text)
 		}
 	}
 }
@@ -77,11 +77,11 @@ func (m *Manager) room(roomid string) broadcast.Broadcaster {
 	return b
 }
 
-func (m *Manager) OpenListener(roomid string) chan interface{}{
+func (m *Manager) OpenListener(roomid string) chan interface{} {
 	listener := make(chan interface{})
 	m.open <- &Listener{
 		RoomId: roomid,
-		Chan: listener,
+		Chan:   listener,
 	}
 	return listener
 }
@@ -89,7 +89,7 @@ func (m *Manager) OpenListener(roomid string) chan interface{}{
 func (m *Manager) CloseListener(roomid string, channel chan interface{}) {
 	m.close <- &Listener{
 		RoomId: roomid,
-		Chan: channel,
+		Chan:   channel,
 	}
 }
 
@@ -97,11 +97,11 @@ func (m *Manager) DeleteBroadcast(roomid string) {
 	m.delete <- roomid
 }
 
-func (m *Manager) Submit (userid, roomid, text string) {
+func (m *Manager) Submit(userid, roomid, text string) {
 	msg := &Message{
 		UserId: userid,
 		RoomId: roomid,
-		Text: text,
+		Text:   text,
 	}
 	m.messages <- msg
 }

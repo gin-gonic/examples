@@ -9,18 +9,16 @@ require (
 	github.com/gin-gonic/gin v1.8.1
 	github.com/go-playground/validator/v10 v10.11.0
 	github.com/goccy/go-json v0.9.10 // indirect
-	github.com/golang/protobuf v1.5.2
+	github.com/google/go-cmp v0.5.6 // indirect
 	github.com/jessevdk/go-assets v0.0.0-20160921144138-4f4301a06e15
 	github.com/manucorporat/stats v0.0.0-20180402194714-3ba42d56d227
 	github.com/mattn/go-colorable v0.1.12 // indirect
 	github.com/newrelic/go-agent v3.17.0+incompatible
 	github.com/pelletier/go-toml/v2 v2.0.2 // indirect
 	github.com/stretchr/testify v1.7.2
-	github.com/thinkerou/favicon v0.1.0
 	go.uber.org/ratelimit v0.2.0
 	golang.org/x/crypto v0.0.0-20220722155217-630584e8d5aa
-	golang.org/x/net v0.0.0-20220725212005-46097bf591d3
+	golang.org/x/net v0.0.0-20220725212005-46097bf591d3 // indirect
 	golang.org/x/sync v0.0.0-20220722155255-886fb9371eb4
-	google.golang.org/genproto v0.0.0-20220725144611-272f38e5d71b // indirect
-	google.golang.org/grpc v1.48.0
+	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
 )

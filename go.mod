@@ -9,7 +9,6 @@ require (
 	github.com/go-playground/validator/v10 v10.11.0
 	github.com/goccy/go-json v0.9.10 // indirect
 	github.com/google/go-cmp v0.5.6 // indirect
-	github.com/jessevdk/go-assets v0.0.0-20160921144138-4f4301a06e15
 	github.com/manucorporat/stats v0.0.0-20180402194714-3ba42d56d227
 	github.com/mattn/go-colorable v0.1.12 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect

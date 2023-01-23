@@ -7,11 +7,12 @@ This is a complete example to create a single binary with the
 
 ## How to use
 
-### Prepare Packages
+### Prepare Packages and Tool
 
 ```sh
 go get github.com/gin-gonic/gin
 go get github.com/jessevdk/go-assets-builder
+go install github.com/jessevdk/go-assets-builder@latest
 ```
 
 ### Generate assets.go

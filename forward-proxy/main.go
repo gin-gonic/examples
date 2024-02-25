@@ -1,11 +1,12 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
 	"io"
 	"net/http"
 	"net/http/httputil"
 	"net/url"
+
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
@@ -13,11 +14,12 @@ func main() {
 
 	r.Use(ForwardMid)
 
-	//Create a catchall route
+	// Create a catchall route
 	r.Any("/*proxyPath", Reverse)
 
-	log.Info("启动http")
-	r.Run(":8888")
+	if err := r.Run(":8888"); err != nil {
+		panic(err)
+	}
 }
 
 func ForwardMid(c *gin.Context) {
@@ -41,6 +43,7 @@ func ForwardMid(c *gin.Context) {
 
 	c.Next()
 }
+
 func copyHeader(dst, src http.Header) {
 	for k, vv := range src {
 		for _, v := range vv {
@@ -48,6 +51,7 @@ func copyHeader(dst, src http.Header) {
 		}
 	}
 }
+
 func Reverse(c *gin.Context) {
 	remote, _ := url.Parse("http://xxx.xxx.xxx")
 	proxy := httputil.NewSingleHostReverseProxy(remote)

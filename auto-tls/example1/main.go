@@ -15,5 +15,5 @@ func main() {
 		c.String(200, "pong")
 	})
 
-	log.Fatal(autotls.Run(r, "example1.com", "example2.com"))
+	log.Fatal(autotls.Run(r, "example1.com", "example2.com")) // set HostWhitelist here
 }

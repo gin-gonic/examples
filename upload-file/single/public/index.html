@@ -6,10 +6,14 @@
 </head>
 <body>
 <h1>Upload single file with fields</h1>
-
 <form action="/upload" method="post" enctype="multipart/form-data">
-    Name: <input type="text" name="name"><br>
-    Email: <input type="email" name="email"><br>
+    <label>Name:
+        <input type="text" name="name">
+    </label><br>
+    <label>Email:
+        <input type="email" name="email">
+    </label><br>
+    <label></label>
     Files: <input type="file" name="file"><br><br>
     <input type="submit" value="Submit">
 </form>

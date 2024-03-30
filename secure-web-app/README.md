@@ -16,6 +16,7 @@ Also the web application has strict Host Header to avoid SSRF and Host Header In
 
 ```
 curl http://localhost:8080 -I
+
 HTTP/1.1 404 Not Found
 Content-Security-Policy: default-src 'self'; connect-src *; font-src *; script-src-elem * 'unsafe-inline'; img-src * data:; style-src * 'unsafe-inline';
 Content-Type: text/plain
@@ -32,6 +33,7 @@ Content-Length: 18
 2. Host Header Injection Example
 ```
 curl http://localhost:8080 -I -H "Host:neti.ee"
+
 HTTP/1.1 400 Bad Request
 Content-Type: application/json; charset=utf-8
 Date: Thu, 28 Mar 2024 11:38:23 GMT

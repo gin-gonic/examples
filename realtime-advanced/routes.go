@@ -21,8 +21,8 @@ func rateLimit(c *gin.Context) {
 		if value%200 == 0 {
 			fmt.Println("ip blocked")
 		}
-		c.Abort()
 		c.String(http.StatusServiceUnavailable, "you were automatically banned :)")
+		c.Abort()
 	}
 }
 

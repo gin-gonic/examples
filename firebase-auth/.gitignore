@@ -1,0 +1,4 @@
+*.json
+.json
+/config/cred.json
+*/cred.json

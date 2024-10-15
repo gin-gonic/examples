@@ -1,5 +1,7 @@
 # Use OTEL in Gin
 
+Currently set `ContextWithFallback = true` to use otel in Gin, but this doesn't seem like a good solution.
+
 This example shows a minimum case to use otel in Gin.
 
 To run the example:

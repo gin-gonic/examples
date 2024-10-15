@@ -15,7 +15,7 @@ import (
 
 var applicationName string = "demo"
 
-func TestGin() {
+func main() {
 	otel.SetTracerProvider(sdktrace.NewTracerProvider(sdktrace.WithSampler(sdktrace.ParentBased(sdktrace.AlwaysSample()))))
 	app := gin.Default()
 	app.ContextWithFallback = true

@@ -5,11 +5,13 @@ Currently set `ContextWithFallback = true` to use otel in Gin, but this doesn't 
 This example shows a minimum case to use otel in Gin.
 
 To run the example:
+
 ```bash
 go run main.go
 ```
 
 In stander output like this:
+
 ```bash
 [GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
 
@@ -24,5 +26,3 @@ Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-
 traceID: 00477d7b56b757d0581328ef21d17271; spanID: 9d05e83c0c188a16; isSampled: true
 [GIN] 2024/10/15 - 11:44:32 | 200 |      31.209µs |             ::1 | GET      "/"
 ```
-
-

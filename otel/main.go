@@ -7,6 +7,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+
 	"go.opentelemetry.io/contrib/instrumentation/github.com/gin-gonic/gin/otelgin"
 	"go.opentelemetry.io/otel"
 	sdktrace "go.opentelemetry.io/otel/sdk/trace"
@@ -33,7 +34,6 @@ func main() {
 	}()
 
 	http.Get("http://localhost:8080/")
-
 }
 
 func GetTraceInfo(ctx context.Context) (traceID string, spanID string, isSampled bool) {

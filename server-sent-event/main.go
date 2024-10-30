@@ -125,7 +125,8 @@ func (stream *Event) serveHTTP() gin.HandlerFunc {
 		// Send new connection to event server
 		stream.NewClients <- clientChan
 
-		defer func() {
+		go func() {
+			<-c.Writer.CloseNotify()
 			// Send closed connection to event server
 			stream.ClosedClients <- clientChan
 		}()

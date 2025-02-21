@@ -114,7 +114,7 @@ func (stream *Event) listen() {
 				case clientMessageChan <- eventMsg:
 					// Message sent successfully
 				default:
-					// Client message channel full, dropping message
+					// Failed to send, dropping message
 				}
 			}
 		}

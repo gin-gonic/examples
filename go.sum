@@ -21,6 +21,8 @@ github.com/gin-contrib/sse v0.1.0 h1:Y/yl/+YNO8GZSjAhjMsSuLt29uWRFHdHYUb5lYOV9qE
 github.com/gin-contrib/sse v0.1.0/go.mod h1:RHrZQHXnP2xjPF+u1gW/2HnVO7nvIa9PG3Gm+fLHvGI=
 github.com/gin-contrib/static v1.1.3 h1:WLOpkBtMDJ3gATFZgNJyVibFMio/UHonnueqJsQ0w4U=
 github.com/gin-contrib/static v1.1.3/go.mod h1:zejpJ/YWp8cZj/6EpiL5f/+skv5daQTNwRx1E8Pci30=
+github.com/gin-gonic/autotls v1.1.1 h1:WXQ7zto3kMr9fsdCMxqCSPEeAImkSOuiRlXgQnP0Pjo=
+github.com/gin-gonic/autotls v1.1.1/go.mod h1:BoC+3tMlgHtL+Dtu/3Euq771BzRu4IAbtxc2NcTGmQI=
 github.com/gin-gonic/gin v1.10.0 h1:nTuyha1TYqgedzytsKYqna+DfLos46nTv2ygFy86HFU=
 github.com/gin-gonic/gin v1.10.0/go.mod h1:4PMNQiOhvDRa013RKVbsiNwoyezlm2rm0uX/T7kzp5Y=
 github.com/go-playground/assert/v2 v2.2.0 h1:JvknZsQTYeFEAhQwI4qEt9cyV5ONwRHC+lYKSsYSR8s=

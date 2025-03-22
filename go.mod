@@ -5,10 +5,12 @@ go 1.23.0
 require (
 	github.com/fatih/color v1.16.0
 	github.com/gin-contrib/static v1.1.3
+	github.com/gin-gonic/autotls v1.1.1
 	github.com/gin-gonic/gin v1.10.0
 	github.com/go-playground/validator/v10 v10.23.0
 	github.com/stretchr/testify v1.9.0
 	go.uber.org/ratelimit v0.3.0
+	golang.org/x/crypto v0.36.0
 	golang.org/x/sync v0.12.0
 )
 
@@ -38,7 +40,6 @@ require (
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/ugorji/go/codec v1.2.12 // indirect
 	golang.org/x/arch v0.12.0 // indirect
-	golang.org/x/crypto v0.36.0 // indirect
 	golang.org/x/net v0.37.0 // indirect
 	golang.org/x/sys v0.31.0 // indirect
 	golang.org/x/text v0.23.0 // indirect

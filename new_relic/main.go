@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/gin-gonic/gin"
 	"github.com/newrelic/go-agent/v3/integrations/nrgin"
@@ -16,6 +17,10 @@ func main() {
 	app, err := newrelic.NewApplication(
 		newrelic.ConfigAppName("MyApp"),
 		newrelic.ConfigFromEnvironment(),
+		newrelic.ConfigDebugLogger(os.Stdout),
+		newrelic.ConfigAppLogForwardingEnabled(true),
+		newrelic.ConfigCodeLevelMetricsEnabled(true),
+		newrelic.ConfigCodeLevelMetricsPathPrefixes("go-agent/v3"),
 	)
 	if err != nil {
 		log.Fatalf("failed to make new_relic app: %v", err)

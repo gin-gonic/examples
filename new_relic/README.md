@@ -1,30 +1,93 @@
-The [New Relic Go Agent](https://github.com/newrelic/go-agent) provides a nice middleware for the stdlib handler signature. 
-The following is an adaptation of that middleware for Gin.
+# New Relic Integration with Gin
 
-```golang
-const (
-	// NewRelicTxnKey is the key used to retrieve the NewRelic Transaction from the context
-	NewRelicTxnKey = "NewRelicTxnKey"
+This example demonstrates how to integrate New Relic with a Gin web application.
+
+## Prerequisites
+
+- Go 1.16 or later
+- A New Relic account and API key
+
+## Setup
+
+1. Clone the repository and navigate to the `new_relic` directory:
+
+```sh
+git clone https://github.com/your-repo/gin-examples.git
+cd gin-examples/new_relic
+```
+
+1. Install the dependencies:
+
+```sh
+go mod tidy
+```
+
+1. Set the environment variables for your New Relic application:
+
+```sh
+export NEW_RELIC_APP_NAME="YourAppName"
+export NEW_RELIC_LICENSE_KEY="YourNewRelicLicenseKey"
+```
+
+## Running the Application
+
+To run the application, use the following command:
+
+```sh
+go run main.go
+```
+
+The application will start a web server on `http://localhost:8080`. You can access it in your browser to see the "Hello World!" message.
+
+## Code Overview
+
+The main components of the application are:
+
+- **Gin Router**: The web framework used to handle HTTP requests.
+- **New Relic Application**: The New Relic agent used to monitor the application.
+
+### main.go
+
+```go
+package main
+
+import (
+  "log"
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+  "github.com/newrelic/go-agent/v3/integrations/nrgin"
+  newrelic "github.com/newrelic/go-agent/v3/newrelic"
 )
 
-// NewRelicMonitoring is a middleware that starts a newrelic transaction, stores it in the context, then calls the next handler
-func NewRelicMonitoring(app newrelic.Application) gin.HandlerFunc {
-	return func(ctx *gin.Context) {
-		txn := app.StartTransaction(ctx.Request.URL.Path, ctx.Writer, ctx.Request)
-		defer txn.End()
-		ctx.Set(NewRelicTxnKey, txn)
-		ctx.Next()
-	}
+func main() {
+  router := gin.Default()
+
+  app, err := newrelic.NewApplication(
+    newrelic.ConfigAppName("MyApp"),
+    newrelic.ConfigFromEnvironment(),
+  )
+  if err != nil {
+    log.Fatalf("failed to make new_relic app: %v", err)
+  }
+
+  router.Use(nrgin.Middleware(app))
+  router.GET("/", func(c *gin.Context) {
+    c.String(http.StatusOK, "Hello World!\n")
+  })
+  router.Run()
 }
 ```
-and in `main.go` or equivalent...
-```golang
-router := gin.Default()
-cfg := newrelic.NewConfig(os.Getenv("APP_NAME"), os.Getenv("NEW_RELIC_API_KEY"))
-app, err := newrelic.NewApplication(cfg)
-if err != nil {
-		log.Printf("failed to make new_relic app: %v", err)
-} else {
-		router.Use(adapters.NewRelicMonitoring(app))
-}
- ```
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](../LICENSE) file for details.
+
+## Contributing
+
+Contributions are welcome! Please see the [CONTRIBUTING](../CONTRIBUTING.md) file for more information.
+
+## Acknowledgments
+
+- [Gin Web Framework](https://github.com/gin-gonic/gin)
+- [New Relic Go Agent](https://github.com/newrelic/go-agent)

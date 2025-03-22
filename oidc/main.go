@@ -3,8 +3,10 @@ package main
 import (
 	"context"
 	"crypto/rand"
+	"embed"
 	"encoding/base64"
 	"encoding/json"
+	"html/template"
 	"log"
 	"net/http"
 	"os"
@@ -55,11 +57,14 @@ type GitHubUser struct {
 	AvatarURL string `json:"avatar_url"`
 }
 
+//go:embed templates/*
+var templatesFS embed.FS
+
 func main() {
 	r := gin.Default()
 
 	// Set HTML templates
-	r.LoadHTMLGlob("templates/*")
+	r.SetHTMLTemplate(template.Must(template.ParseFS(templatesFS, "templates/*")))
 
 	// Home route
 	r.GET("/", func(c *gin.Context) {

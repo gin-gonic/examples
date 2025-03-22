@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{{ .title }}</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .login-button {
+      display: inline-block;
+      background-color: #2da44e;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    .login-button:hover {
+      background-color: #2c974b;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>{{ .title }}</h1>
+  <p>Click the button below to log in with your GitHub account</p>
+  <a href="/login" class="login-button">
+    Log in with GitHub
+  </a>
+</body>
+
+</html>

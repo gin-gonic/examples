@@ -111,6 +111,7 @@ func (stream *Event) listen() {
 		// Broadcast message to client
 		case eventMsg := <-stream.Message:
 			for clientMessageChan := range stream.TotalClients {
+				select {
 				case clientMessageChan <- eventMsg:
 					// Message sent successfully
 				default:

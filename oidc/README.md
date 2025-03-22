@@ -10,6 +10,10 @@ This project demonstrates how to implement GitHub OAuth2 authentication using th
   - [Setup](#setup)
     - [Prerequisites](#prerequisites)
     - [Installation](#installation)
+      - [Clone the repository](#clone-the-repository)
+      - [Install dependencies](#install-dependencies)
+      - [Set up environment variables](#set-up-environment-variables)
+      - [Run the application](#run-the-application)
   - [Usage](#usage)
     - [Routes](#routes)
     - [Example](#example)
@@ -39,27 +43,27 @@ This project provides a simple example of how to integrate GitHub OAuth2 authent
 
 ### Installation
 
-1. Clone the repository:
+#### Clone the repository
 
-   ```sh
-   git clone https://github.com/yourusername/oidc.git
-   cd oidc
-   ```
+```sh
+git clone https://github.com/yourusername/oidc.git
+cd oidc
+```
 
-2. Install dependencies:
+#### Install dependencies
 
-   ```sh
-   go mod tidy
-   ```
+```sh
+go mod tidy
+```
 
-3. Set up environment variables:
+#### Set up environment variables
 
 ```sh
 export GITHUB_CLIENT_ID=your_github_client_id
 export GITHUB_CLIENT_SECRET=your_github_client_secret
 ```
 
-4. Run the application:
+#### Run the application
 
 ```sh
 go run main.go

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{{ .title }}</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .user-info {
+      background-color: #f6f8fa;
+      border: 1px solid #d0d7de;
+      border-radius: 6px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>{{ .title }}</h1>
+  <div class="user-info">
+    <img src="{{ .avatar_url }}" alt="User Avatar" class="avatar">
+    <h2>{{ .name }}</h2>
+    <p><strong>Username:</strong> {{ .username }}</p>
+    <p><strong>Email:</strong> {{ .email }}</p>
+  </div>
+  <p><a href="/">Return to Home</a></p>
+</body>
+
+</html>

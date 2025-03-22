@@ -59,7 +59,7 @@ export GITHUB_CLIENT_ID=your_github_client_id
 export GITHUB_CLIENT_SECRET=your_github_client_secret
 ```
 
-1. Run the application:
+4. Run the application:
 
 ```sh
 go run main.go

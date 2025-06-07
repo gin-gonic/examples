@@ -25,7 +25,7 @@ protoc --go_out=gen --go_opt=paths=source_relative \
   -I=$PWD pb/helloworld.proto
 ```
 
-## Runing
+## Running
 
 First Step: run grpc server
 

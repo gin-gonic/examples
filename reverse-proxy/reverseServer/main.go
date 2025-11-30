@@ -53,9 +53,8 @@ func main() {
 				c.Header(k, v)
 			}
 		}
-		defer resp.Body.Close()
-		bufio.NewReader(resp.Body).WriteTo(c.Writer)
-		return
+		defer func() { _ = resp.Body.Close() }()
+		_, _ = bufio.NewReader(resp.Body).WriteTo(c.Writer)
 	})
 
 	if err := r.Run(ReverseServerAddr); err != nil {

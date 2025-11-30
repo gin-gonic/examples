@@ -75,7 +75,7 @@ func main() {
 	// Parse Static files
 	router.StaticFile("/", "./public/index.html")
 
-	router.Run(":8085")
+	_ = router.Run(":8085")
 }
 
 // Initialize event and Start processing requests

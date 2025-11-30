@@ -32,10 +32,10 @@ func ForwardMid(c *gin.Context) {
 				c.Abort()
 				return
 			}
-			defer resp.Body.Close()
+			defer func() { _ = resp.Body.Close() }()
 			copyHeader(c.Writer.Header(), resp.Header)
 			c.Writer.WriteHeader(resp.StatusCode)
-			io.Copy(c.Writer, resp.Body)
+			_, _ = io.Copy(c.Writer, resp.Body)
 			c.Abort()
 			return
 		}

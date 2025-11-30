@@ -42,7 +42,7 @@ func uploadHandler(c *gin.Context) {
 		return
 	}
 
-	defer file.Close()
+	defer func() { _ = file.Close() }()
 	// For demonstration we ignore saving the file, but could copy to disk or buffer
 	// _, err = io.Copy(io.Discard, file) // Uncomment if you want to read all bytes
 
@@ -61,5 +61,5 @@ func setupRouter() *gin.Engine {
 func main() {
 	r := setupRouter()
 	// Run Gin server on :8080
-	r.Run(":8080")
+	_ = r.Run(":8080")
 }

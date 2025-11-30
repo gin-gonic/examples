@@ -31,5 +31,5 @@ func main() {
 
 		c.String(http.StatusOK, "File %s uploaded successfully with fields name=%s and email=%s.", file.Filename, name, email)
 	})
-	router.Run(":8080")
+	_ = router.Run(":8080")
 }

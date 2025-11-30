@@ -1,6 +1,6 @@
 module github.com/gin-gonic/examples
 
-go 1.23.0
+go 1.24.0
 
 require (
 	github.com/fatih/color v1.18.0
@@ -8,10 +8,11 @@ require (
 	github.com/gin-gonic/autotls v1.1.2
 	github.com/gin-gonic/gin v1.10.1
 	github.com/go-playground/validator/v10 v10.26.0
-	github.com/stretchr/testify v1.10.0
+	github.com/stretchr/testify v1.11.1
+	github.com/yosssi/ace v0.0.5
 	go.uber.org/ratelimit v0.3.1
-	golang.org/x/crypto v0.38.0
-	golang.org/x/sync v0.14.0
+	golang.org/x/crypto v0.45.0
+	golang.org/x/sync v0.18.0
 )
 
 require (
@@ -38,11 +39,10 @@ require (
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/ugorji/go/codec v1.2.12 // indirect
-	github.com/yosssi/ace v0.0.5 // indirect
 	golang.org/x/arch v0.17.0 // indirect
-	golang.org/x/net v0.40.0 // indirect
-	golang.org/x/sys v0.33.0 // indirect
-	golang.org/x/text v0.25.0 // indirect
+	golang.org/x/net v0.47.0 // indirect
+	golang.org/x/sys v0.38.0 // indirect
+	golang.org/x/text v0.31.0 // indirect
 	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
 	google.golang.org/protobuf v1.36.6 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect

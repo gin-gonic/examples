@@ -9,7 +9,7 @@ var router = gin.Default()
 // Run will start the server
 func Run() {
 	getRoutes()
-	router.Run(":5000")
+	_ = router.Run(":5000")
 }
 
 // getRoutes will create our routes of our entire application

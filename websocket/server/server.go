@@ -20,7 +20,7 @@ func echo(ctx *gin.Context) {
 		log.Println("upgrade:", err)
 		return
 	}
-	defer c.Close()
+	defer func() { _ = c.Close() }()
 	for {
 		mt, message, err := c.ReadMessage()
 		if err != nil {
@@ -37,7 +37,7 @@ func echo(ctx *gin.Context) {
 }
 
 func home(c *gin.Context) {
-	homeTemplate.Execute(c.Writer, "ws://"+c.Request.Host+"/echo")
+	_ = homeTemplate.Execute(c.Writer, "ws://"+c.Request.Host+"/echo")
 }
 
 func main() {

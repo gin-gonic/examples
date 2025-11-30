@@ -23,8 +23,8 @@ func createMultipartBody(fieldName string, size int) (contentType string, bodyBy
 	var b bytes.Buffer
 	w := multipart.NewWriter(&b)
 	fw, _ := w.CreateFormFile(fieldName, "test.bin")
-	io.CopyN(fw, bytes.NewReader(make([]byte, size)), int64(size)) // Write 'size' bytes
-	w.Close()
+	_, _ = io.CopyN(fw, bytes.NewReader(make([]byte, size)), int64(size)) // Write 'size' bytes
+	_ = w.Close()
 	return w.FormDataContentType(), b.Bytes()
 }
 
@@ -66,7 +66,7 @@ func TestUploadMissingFile(t *testing.T) {
 	router := setupRouter()
 	var b bytes.Buffer
 	w := multipart.NewWriter(&b)
-	w.Close()
+	_ = w.Close()
 	req, _ := http.NewRequest("POST", "/upload", &b)
 	req.Header.Set("Content-Type", w.FormDataContentType())
 	resp := httptest.NewRecorder()

@@ -44,7 +44,7 @@ func main() {
 	}
 
 	route.POST("/user", validateUser)
-	route.Run(":8085")
+	_ = route.Run(":8085")
 }
 
 func validateUser(c *gin.Context) {

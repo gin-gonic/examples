@@ -29,5 +29,5 @@ func main() {
 
 	// Listen and serve on defined port
 	log.Printf("Listening on port %s", port)
-	r.Run(":" + port)
+	_ = r.Run(":" + port)
 }

@@ -34,5 +34,5 @@ func main() {
 	})
 
 	// Listen and Server in https://127.0.0.1:8080
-	r.RunTLS(":8080", "./testdata/server.pem", "./testdata/server.key")
+	_ = r.RunTLS(":8080", "./testdata/server.pem", "./testdata/server.key")
 }

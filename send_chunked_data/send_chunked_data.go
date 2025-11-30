@@ -18,27 +18,27 @@ func main() {
 		header.Set("Transfer-Encoding", "chunked")
 		header.Set("Content-Type", "text/html")
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte(`
+		_, _ = w.Write([]byte(`
 			<html>
 					<body>
 		`))
 		w.(http.Flusher).Flush()
 		for i := 0; i < 10; i++ {
-			w.Write([]byte(fmt.Sprintf(`
+			_, _ = fmt.Fprintf(w, `
 				<h1>%d</h1>
-			`, i)))
+			`, i)
 			w.(http.Flusher).Flush()
 			time.Sleep(time.Duration(1) * time.Second)
 		}
-		w.Write([]byte(`
-			
+		_, _ = w.Write([]byte(`
+
 					</body>
 			</html>
 		`))
 		w.(http.Flusher).Flush()
 	})
 
-	r.Run("127.0.0.1:8080")
+	_ = r.Run("127.0.0.1:8080")
 }
 
 /*

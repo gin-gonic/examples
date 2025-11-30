@@ -16,7 +16,7 @@ type Booking struct {
 func main() {
 	router := gin.Default()
 	router.POST("/book", bookingHandler)
-	router.Run(":8080")
+	_ = router.Run(":8080")
 }
 
 func bookingHandler(c *gin.Context) {

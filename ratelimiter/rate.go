@@ -40,8 +40,8 @@ func ginRun(rps int) {
 		ctx.JSON(200, "rate limiting test")
 	})
 
-	log.Printf(color.CyanString("Current Rate Limit: %v requests/s", rps))
-	app.Run(":8080")
+	log.Print(color.CyanString("Current Rate Limit: %v requests/s", rps))
+	_ = app.Run(":8080")
 }
 
 func main() {

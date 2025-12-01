@@ -10,9 +10,9 @@ import (
 )
 
 type BindFile struct {
-	Name  string                `form:"name" binding:"required"`
+	Name  string                `form:"name"  binding:"required"`
 	Email string                `form:"email" binding:"required"`
-	File  *multipart.FileHeader `form:"file" binding:"required"`
+	File  *multipart.FileHeader `form:"file"  binding:"required"`
 }
 
 func main() {
@@ -37,7 +37,15 @@ func main() {
 			return
 		}
 
-		c.String(http.StatusOK, fmt.Sprintf("File %s uploaded successfully with fields name=%s and email=%s.", file.Filename, bindFile.Name, bindFile.Email))
+		c.String(
+			http.StatusOK,
+			fmt.Sprintf(
+				"File %s uploaded successfully with fields name=%s and email=%s.",
+				file.Filename,
+				bindFile.Name,
+				bindFile.Email,
+			),
+		)
 	})
 	_ = router.Run(":8080")
 }

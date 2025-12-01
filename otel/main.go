@@ -17,7 +17,11 @@ import (
 var applicationName string = "demo"
 
 func main() {
-	otel.SetTracerProvider(sdktrace.NewTracerProvider(sdktrace.WithSampler(sdktrace.ParentBased(sdktrace.AlwaysSample()))))
+	otel.SetTracerProvider(
+		sdktrace.NewTracerProvider(
+			sdktrace.WithSampler(sdktrace.ParentBased(sdktrace.AlwaysSample())),
+		),
+	)
 	app := gin.Default()
 	app.ContextWithFallback = true
 	app.Use(otelgin.Middleware(applicationName))

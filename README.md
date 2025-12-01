@@ -1,6 +1,7 @@
 # Gin Examples
 
 [![Trivy Security Scan](https://github.com/gin-gonic/examples/actions/workflows/trivy-scan.yml/badge.svg)](https://github.com/gin-gonic/examples/actions/workflows/trivy-scan.yml)
+[![golangci-lint](https://github.com/gin-gonic/examples/actions/workflows/golangci-lint.yml/badge.svg)](https://github.com/gin-gonic/examples/actions/workflows/golangci-lint.yml)
 
 This repository contains a number of ready-to-run examples demonstrating various use cases of [Gin](https://github.com/gin-gonic/gin).
 

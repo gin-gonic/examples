@@ -15,7 +15,7 @@ var (
 	rps   = flag.Int("rps", 100, "request per second")
 )
 
-func init() {
+func setupLogging() {
 	log.SetFlags(0)
 	log.SetPrefix("[GIN] ")
 	log.SetOutput(gin.DefaultWriter)
@@ -45,6 +45,7 @@ func ginRun(rps int) {
 }
 
 func main() {
+	setupLogging()
 	flag.Parse()
 	ginRun(*rps)
 }

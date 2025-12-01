@@ -14,7 +14,7 @@ var addr = flag.String("addr", ":8080", "http service address")
 var upgrader = websocket.Upgrader{} // use default option
 
 func echo(ctx *gin.Context) {
-	w,r := ctx.Writer, ctx.Request
+	w, r := ctx.Writer, ctx.Request
 	c, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
 		log.Println("upgrade:", err)
@@ -48,7 +48,6 @@ func main() {
 	r.GET("/", home)
 	log.Fatal(r.Run(*addr))
 }
-
 
 var homeTemplate = template.Must(template.New("").Parse(`
 <!DOCTYPE html>

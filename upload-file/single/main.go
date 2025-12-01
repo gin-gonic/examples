@@ -29,7 +29,13 @@ func main() {
 			return
 		}
 
-		c.String(http.StatusOK, "File %s uploaded successfully with fields name=%s and email=%s.", file.Filename, name, email)
+		c.String(
+			http.StatusOK,
+			"File %s uploaded successfully with fields name=%s and email=%s.",
+			file.Filename,
+			name,
+			email,
+		)
 	})
 	_ = router.Run(":8080")
 }

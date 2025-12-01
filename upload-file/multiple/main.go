@@ -32,7 +32,13 @@ func main() {
 			}
 		}
 
-		c.String(http.StatusOK, "Uploaded successfully %d files with fields name=%s and email=%s.", len(files), name, email)
+		c.String(
+			http.StatusOK,
+			"Uploaded successfully %d files with fields name=%s and email=%s.",
+			len(files),
+			name,
+			email,
+		)
 	})
 	_ = router.Run(":8080")
 }

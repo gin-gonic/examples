@@ -109,7 +109,10 @@ func main() {
 		// Exchange code for access token
 		token, err := oauth2Config.Exchange(context.Background(), code)
 		if err != nil {
-			c.String(http.StatusInternalServerError, "Unable to exchange access token: "+err.Error())
+			c.String(
+				http.StatusInternalServerError,
+				"Unable to exchange access token: "+err.Error(),
+			)
 			return
 		}
 
@@ -117,14 +120,20 @@ func main() {
 		client := oauth2Config.Client(context.Background(), token)
 		resp, err := client.Get(userInfoURL)
 		if err != nil {
-			c.String(http.StatusInternalServerError, "Unable to retrieve user information: "+err.Error())
+			c.String(
+				http.StatusInternalServerError,
+				"Unable to retrieve user information: "+err.Error(),
+			)
 			return
 		}
 		defer resp.Body.Close()
 
 		var user GitHubUser
 		if err := json.NewDecoder(resp.Body).Decode(&user); err != nil {
-			c.String(http.StatusInternalServerError, "Unable to parse user information: "+err.Error())
+			c.String(
+				http.StatusInternalServerError,
+				"Unable to parse user information: "+err.Error(),
+			)
 			return
 		}
 

@@ -27,5 +27,7 @@ func main() {
 		c.String(http.StatusOK, "pong")
 	})
 
-	log.Fatal(autotls.RunWithContext(ctx, r, "example1.com", "example2.com"))
+	if err := autotls.RunWithContext(ctx, r, "example1.com", "example2.com"); err != nil {
+		log.Printf("Server error: %v\n", err)
+	}
 }

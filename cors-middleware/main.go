@@ -10,9 +10,10 @@ import (
 )
 
 const (
-	keyMessage = "message"
-	keyStatus  = "status"
-	keyAction  = "action"
+	keyMessage  = "message"
+	keyStatus   = "status"
+	keyAction   = "action"
+	statusValue = "success"
 )
 
 func CORSMiddleware() gin.HandlerFunc {
@@ -44,7 +45,7 @@ func main() {
 	})
 	r.POST("/data", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
-			keyStatus:  "success",
+			keyStatus:  statusValue,
 			keyAction:  "Created",
 			keyMessage: "Data processed successfully via POST.",
 		})
@@ -52,7 +53,7 @@ func main() {
 	r.PUT("/data/:id", func(c *gin.Context) {
 		id := c.Param("id")
 		c.JSON(http.StatusOK, gin.H{
-			keyStatus:  "success",
+			keyStatus:  statusValue,
 			keyAction:  "Updated",
 			keyMessage: fmt.Sprintf("Successfully processed PUT for resource ID: %s", id),
 		})
@@ -60,7 +61,7 @@ func main() {
 	r.DELETE("/data/:id", func(c *gin.Context) {
 		id := c.Param("id")
 		c.JSON(http.StatusOK, gin.H{
-			keyStatus:  "success",
+			keyStatus:  statusValue,
 			keyAction:  "Deleted",
 			keyMessage: fmt.Sprintf("Successfully processed DELETE for resource ID: %s", id),
 		})

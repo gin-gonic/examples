@@ -32,10 +32,7 @@ func main() {
 		c.String(http.StatusOK, "pong")
 	})
 
-	// Listen and serve on defined port
-	log.Printf(
-		"Listening on port %s",
-		port,
-	) //nolint:gosec // port is validated by portPattern above
+	// port is validated by portPattern above
+	log.Printf("Listening on port %s", port) //nolint:gosec
 	_ = r.Run(":" + port)
 }

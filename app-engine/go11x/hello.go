@@ -33,6 +33,6 @@ func main() {
 	})
 
 	// Listen and serve on defined port
-	log.Printf("Listening on port %s", port)
+	log.Printf("Listening on port %s", port) //nolint:gosec // port is validated by portPattern above
 	_ = r.Run(":" + port)
 }

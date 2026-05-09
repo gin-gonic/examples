@@ -9,6 +9,12 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+const (
+	keyMessage = "message"
+	keyStatus  = "status"
+	keyAction  = "action"
+)
+
 func CORSMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
@@ -32,31 +38,31 @@ func main() {
 	r.GET("/ping", func(c *gin.Context) {
 		log.Println("Received a GET /ping request.")
 		c.JSON(http.StatusOK, gin.H{
-			"message": "pong",
-			"time":    time.Now().Format(time.RFC3339),
+			keyMessage: "pong",
+			"time":     time.Now().Format(time.RFC3339),
 		})
 	})
 	r.POST("/data", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
-			"status":  "success",
-			"action":  "Created",
-			"message": "Data processed successfully via POST.",
+			keyStatus:  "success",
+			keyAction:  "Created",
+			keyMessage: "Data processed successfully via POST.",
 		})
 	})
 	r.PUT("/data/:id", func(c *gin.Context) {
 		id := c.Param("id")
 		c.JSON(http.StatusOK, gin.H{
-			"status":  "success",
-			"action":  "Updated",
-			"message": fmt.Sprintf("Successfully processed PUT for resource ID: %s", id),
+			keyStatus:  "success",
+			keyAction:  "Updated",
+			keyMessage: fmt.Sprintf("Successfully processed PUT for resource ID: %s", id),
 		})
 	})
 	r.DELETE("/data/:id", func(c *gin.Context) {
 		id := c.Param("id")
 		c.JSON(http.StatusOK, gin.H{
-			"status":  "success",
-			"action":  "Deleted",
-			"message": fmt.Sprintf("Successfully processed DELETE for resource ID: %s", id),
+			keyStatus:  "success",
+			keyAction:  "Deleted",
+			keyMessage: fmt.Sprintf("Successfully processed DELETE for resource ID: %s", id),
 		})
 	})
 	log.Fatal(r.Run(":8080"))

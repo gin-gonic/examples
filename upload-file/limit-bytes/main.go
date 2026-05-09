@@ -15,6 +15,7 @@ import (
 
 const (
 	MaxUploadSize = 1 << 20 // 1MB (can set to other sizes; used for tests and demos)
+	keyError      = "error"
 )
 
 func uploadHandler(c *gin.Context) {
@@ -26,19 +27,19 @@ func uploadHandler(c *gin.Context) {
 		// Check for *http.MaxBytesError for upload size limit exceeded (portable way)
 		if _, ok := err.(*http.MaxBytesError); ok {
 			c.JSON(http.StatusRequestEntityTooLarge, gin.H{
-				"error": fmt.Sprintf("file too large (max: %d bytes)", MaxUploadSize),
+				keyError: fmt.Sprintf("file too large (max: %d bytes)", MaxUploadSize),
 			})
 			return
 		}
 		// Other form errors
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		c.JSON(http.StatusBadRequest, gin.H{keyError: err.Error()})
 		return
 	}
 
 	// Get uploaded file; parameter name is "file"
 	file, _, err := c.Request.FormFile("file")
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "file form required"})
+		c.JSON(http.StatusBadRequest, gin.H{keyError: "file form required"})
 		return
 	}
 

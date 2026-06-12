@@ -22,12 +22,16 @@ func NewRouter() *gin.Engine {
 			return
 		}
 		c.Header("X-Frame-Options", "DENY")
-		c.Header("Content-Security-Policy", "default-src 'self'; connect-src *; font-src *; script-src-elem * 'unsafe-inline'; img-src * data:; style-src * 'unsafe-inline';")
+		cspPolicy := "default-src 'self'; connect-src *; font-src *; " +
+			"script-src-elem * 'unsafe-inline'; img-src * data:; style-src * 'unsafe-inline';"
+		c.Header("Content-Security-Policy", cspPolicy)
 		c.Header("X-XSS-Protection", "1; mode=block")
 		c.Header("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload")
 		c.Header("Referrer-Policy", "strict-origin")
 		c.Header("X-Content-Type-Options", "nosniff")
-		c.Header("Permissions-Policy", "geolocation=(),midi=(),sync-xhr=(),microphone=(),camera=(),magnetometer=(),gyroscope=(),fullscreen=(self),payment=()")
+		permPolicy := "geolocation=(),midi=(),sync-xhr=(),microphone=(),camera=()," +
+			"magnetometer=(),gyroscope=(),fullscreen=(self),payment=()"
+		c.Header("Permissions-Policy", permPolicy)
 		c.Next()
 	})
 
@@ -50,7 +54,6 @@ func NewRouter() *gin.Engine {
 }
 
 func main() {
-
 	httpPort := os.Getenv("API_PORT")
 	if httpPort == "" {
 		httpPort = "8080"

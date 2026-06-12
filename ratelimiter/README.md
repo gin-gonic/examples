@@ -12,7 +12,7 @@ you can also make your owns via gin's functional `Use()` to integrate extra midd
 go run rate.go -rps=100
 ```
 
-- Let's hava a simple test by ab with 3000 mock requests, not surprisingly，it will takes 10ms each request.
+- Let's have a simple test by ab with 3000 mock requests, not surprisingly，it will takes 10ms each request.
 
 ```bash
 ab -n 3000 -c 1 http://localhost:8080/rate

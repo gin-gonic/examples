@@ -4,9 +4,12 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"regexp"
 
 	"github.com/gin-gonic/gin"
 )
+
+var portPattern = regexp.MustCompile(`^[0-9]{1,5}$`)
 
 func main() {
 	port := os.Getenv("PORT")
@@ -14,6 +17,8 @@ func main() {
 	if port == "" {
 		port = "8080"
 		log.Printf("Defaulting to port %s", port)
+	} else if !portPattern.MatchString(port) {
+		log.Fatalf("invalid PORT value")
 	}
 
 	// Starts a new Gin instance with no middle-ware
@@ -27,7 +32,7 @@ func main() {
 		c.String(http.StatusOK, "pong")
 	})
 
-	// Listen and serve on defined port
-	log.Printf("Listening on port %s", port)
-	r.Run(":" + port)
+	// port is validated by portPattern above
+	log.Printf("Listening on port %s", port) //nolint:gosec
+	_ = r.Run(":" + port)
 }

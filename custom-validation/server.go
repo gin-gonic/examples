@@ -11,7 +11,7 @@ import (
 
 // Booking contains binded and validated data.
 type Booking struct {
-	CheckIn  time.Time `form:"check_in" binding:"required,bookabledate" time_format:"2006-01-02"`
+	CheckIn  time.Time `form:"check_in"  binding:"required,bookabledate"    time_format:"2006-01-02"`
 	CheckOut time.Time `form:"check_out" binding:"required,gtfield=CheckIn" time_format:"2006-01-02"`
 }
 
@@ -30,11 +30,11 @@ func main() {
 	route := gin.Default()
 
 	if v, ok := binding.Validator.Engine().(*validator.Validate); ok {
-		v.RegisterValidation("bookabledate", bookableDate)
+		_ = v.RegisterValidation("bookabledate", bookableDate)
 	}
 
 	route.GET("/bookable", getBookable)
-	route.Run(":8085")
+	_ = route.Run(":8085")
 }
 
 func getBookable(c *gin.Context) {

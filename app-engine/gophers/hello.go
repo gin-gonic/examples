@@ -7,6 +7,8 @@ import (
 )
 
 // This function's name is a must. App Engine uses it to drive the requests properly.
+//
+//nolint:gochecknoinits // init is required by App Engine
 func init() {
 	// Starts a new Gin instance with no middle-ware
 	r := gin.New()

@@ -22,7 +22,9 @@ var html = template.Must(template.New("https").Parse(`
 
 func main() {
 	logger := log.New(os.Stderr, "", 0)
-	logger.Println("[WARNING] DON'T USE THE EMBED CERTS FROM THIS EXAMPLE IN PRODUCTION ENVIRONMENT, GENERATE YOUR OWN!")
+	logger.Println(
+		"[WARNING] DON'T USE THE EMBED CERTS FROM THIS EXAMPLE IN PRODUCTION ENVIRONMENT, GENERATE YOUR OWN!",
+	)
 
 	r := gin.Default()
 	r.SetHTMLTemplate(html)
@@ -34,5 +36,5 @@ func main() {
 	})
 
 	// Listen and Server in https://127.0.0.1:8080
-	r.RunTLS(":8080", "./testdata/server.pem", "./testdata/server.key")
+	_ = r.RunTLS(":8080", "./testdata/server.pem", "./testdata/server.key")
 }

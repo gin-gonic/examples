@@ -1,5 +1,4 @@
 //go:build go1.8
-// +build go1.8
 
 package main
 
@@ -23,8 +22,9 @@ func main() {
 	})
 
 	srv := &http.Server{
-		Addr:    ":8080",
-		Handler: router,
+		Addr:              ":8080",
+		Handler:           router,
+		ReadHeaderTimeout: 5 * time.Second,
 	}
 
 	// Initializing the server in a goroutine so that
@@ -50,7 +50,7 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	if err := srv.Shutdown(ctx); err != nil {
-		log.Fatal("Server forced to shutdown: ", err)
+		log.Println("Server forced to shutdown: ", err)
 	}
 
 	log.Println("Server exiting")

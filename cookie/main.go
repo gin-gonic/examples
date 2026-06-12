@@ -35,5 +35,5 @@ func main() {
 		c.JSON(200, gin.H{"data": "Your home page"})
 	})
 
-	route.Run(":8080")
+	_ = route.Run(":8080")
 }

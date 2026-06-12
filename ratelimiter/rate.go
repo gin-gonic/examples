@@ -15,7 +15,7 @@ var (
 	rps   = flag.Int("rps", 100, "request per second")
 )
 
-func init() {
+func setupLogging() {
 	log.SetFlags(0)
 	log.SetPrefix("[GIN] ")
 	log.SetOutput(gin.DefaultWriter)
@@ -40,11 +40,12 @@ func ginRun(rps int) {
 		ctx.JSON(200, "rate limiting test")
 	})
 
-	log.Printf(color.CyanString("Current Rate Limit: %v requests/s", rps))
-	app.Run(":8080")
+	log.Print(color.CyanString("Current Rate Limit: %v requests/s", rps))
+	_ = app.Run(":8080")
 }
 
 func main() {
+	setupLogging()
 	flag.Parse()
 	ginRun(*rps)
 }

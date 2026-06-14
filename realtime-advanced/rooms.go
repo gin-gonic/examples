@@ -4,13 +4,13 @@ import "github.com/dustin/go-broadcast"
 
 var roomChannels = make(map[string]broadcast.Broadcaster)
 
-func openListener(roomid string) chan interface{} {
-	listener := make(chan interface{})
+func openListener(roomid string) chan any {
+	listener := make(chan any)
 	room(roomid).Register(listener)
 	return listener
 }
 
-func closeListener(roomid string, listener chan interface{}) {
+func closeListener(roomid string, listener chan any) {
 	room(roomid).Unregister(listener)
 	close(listener)
 }

@@ -12,7 +12,7 @@ type Message struct {
 
 type Listener struct {
 	RoomId string
-	Chan   chan interface{}
+	Chan   chan any
 }
 
 type Manager struct {
@@ -77,8 +77,8 @@ func (m *Manager) room(roomid string) broadcast.Broadcaster {
 	return b
 }
 
-func (m *Manager) OpenListener(roomid string) chan interface{} {
-	listener := make(chan interface{})
+func (m *Manager) OpenListener(roomid string) chan any {
+	listener := make(chan any)
 	m.open <- &Listener{
 		RoomId: roomid,
 		Chan:   listener,
@@ -86,7 +86,7 @@ func (m *Manager) OpenListener(roomid string) chan interface{} {
 	return listener
 }
 
-func (m *Manager) CloseListener(roomid string, channel chan interface{}) {
+func (m *Manager) CloseListener(roomid string, channel chan any) {
 	m.close <- &Listener{
 		RoomId: roomid,
 		Chan:   channel,

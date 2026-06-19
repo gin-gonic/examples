@@ -22,7 +22,6 @@ const (
 // This is useful when frontend and backend are running separately.
 func CORSMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
-
 		// Allow requests from any origin.
 		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
 
@@ -39,7 +38,6 @@ func CORSMiddleware() gin.HandlerFunc {
 
 		// Handle preflight OPTIONS request.
 		if c.Request.Method == "OPTIONS" {
-
 			// Cache preflight response for 24 hours.
 			c.Writer.Header().Set("Access-Control-Max-Age", "86400")
 
@@ -54,7 +52,6 @@ func CORSMiddleware() gin.HandlerFunc {
 }
 
 func main() {
-
 	// Create a Gin router with default middleware:
 	// logger and recovery middleware.
 	r := gin.Default()
@@ -64,7 +61,6 @@ func main() {
 
 	// GET endpoint for health check / connectivity test.
 	r.GET("/ping", func(c *gin.Context) {
-
 		// Log incoming request.
 		log.Println("Received a GET /ping request.")
 
@@ -79,7 +75,6 @@ func main() {
 
 	// POST endpoint for processing data.
 	r.POST("/data", func(c *gin.Context) {
-
 		c.JSON(http.StatusOK, gin.H{
 			keyStatus:  statusValue,
 			keyAction:  "Created",
@@ -89,7 +84,6 @@ func main() {
 
 	// PUT endpoint for updating a resource by ID.
 	r.PUT("/data/:id", func(c *gin.Context) {
-
 		// Extract ID from URL parameter.
 		id := c.Param("id")
 
@@ -107,7 +101,6 @@ func main() {
 
 	// DELETE endpoint for removing a resource by ID.
 	r.DELETE("/data/:id", func(c *gin.Context) {
-
 		// Extract ID from URL parameter.
 		id := c.Param("id")
 

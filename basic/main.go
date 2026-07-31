@@ -11,15 +11,15 @@ var db = make(map[string]string)
 func setupRouter() *gin.Engine {
 	// Disable Console Color
 	// gin.DisableConsoleColor()
-	r := gin.Default()
+	router := gin.Default()
 
 	// Ping test
-	r.GET("/ping", func(c *gin.Context) {
+	router.GET("/ping", func(c *gin.Context) {
 		c.String(http.StatusOK, "pong")
 	})
 
 	// Get user value
-	r.GET("/user/:name", func(c *gin.Context) {
+	router.GET("/user/:name", func(c *gin.Context) {
 		user := c.Params.ByName("name")
 		value, ok := db[user]
 		if ok {
@@ -31,12 +31,12 @@ func setupRouter() *gin.Engine {
 
 	// Authorized group (uses gin.BasicAuth() middleware)
 	// Same than:
-	// authorized := r.Group("/")
+	// authorized := router.Group("/")
 	// authorized.Use(gin.BasicAuth(gin.Credentials{
 	//	  "foo":  "bar",
 	//	  "manu": "123",
 	// }))
-	authorized := r.Group("/", gin.BasicAuth(gin.Accounts{
+	authorized := router.Group("/", gin.BasicAuth(gin.Accounts{
 		"foo":  "bar", // user:foo password:bar
 		"manu": "123", // user:manu password:123
 	}))
@@ -64,11 +64,11 @@ func setupRouter() *gin.Engine {
 		}
 	})
 
-	return r
+	return router
 }
 
 func main() {
-	r := setupRouter()
+	router := setupRouter()
 	// Listen and Server in 0.0.0.0:8080
-	_ = r.Run(":8080")
+	_ = router.Run(":8080")
 }

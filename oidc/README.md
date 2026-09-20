@@ -38,7 +38,7 @@ This project provides a simple example of how to integrate GitHub OAuth2 authent
 
 ### Prerequisites
 
-- Go 1.23.1 or later
+- Go 1.26 or later
 - GitHub OAuth2 application credentials (Client ID and Client Secret)
 
 ### Installation

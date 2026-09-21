@@ -54,12 +54,11 @@ func copyHeader(dst, src http.Header) {
 
 func Reverse(c *gin.Context) {
 	remote, _ := url.Parse("http://xxx.xxx.xxx")
-	proxy := httputil.NewSingleHostReverseProxy(remote)
-	proxy.Director = func(req *http.Request) {
-		req.Header = c.Request.Header
-		req.Host = remote.Host
-		req.URL.Host = remote.Host
-		req.URL.Scheme = remote.Scheme
+	proxy := &httputil.ReverseProxy{
+		Rewrite: func(req *httputil.ProxyRequest) {
+			req.SetURL(remote)
+			req.SetXForwarded()
+		},
 	}
 	proxy.ServeHTTP(c.Writer, c.Request)
 }

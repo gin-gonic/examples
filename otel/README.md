@@ -4,7 +4,7 @@ This project demonstrates how to integrate OpenTelemetry (OTEL) with the Gin web
 
 ## Prerequisites
 
-- Go 1.23 or later
+- Go 1.26 or later
 - Git
 
 ## Installation

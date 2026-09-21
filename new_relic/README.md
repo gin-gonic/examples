@@ -4,7 +4,7 @@ This example demonstrates how to integrate New Relic with a Gin web application.
 
 ## Prerequisites
 
-- Go 1.16 or later
+- Go 1.26 or later
 - A New Relic account and API key
 
 ## Setup

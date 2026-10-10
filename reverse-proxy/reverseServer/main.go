@@ -27,7 +27,7 @@ func getLoadBalanceAddr() string {
 func main() {
 	r := gin.Default()
 	r.GET("/:path", func(c *gin.Context) {
-		// step 1: resolve proxy address, change scheme and host in requets
+		// step 1: resolve proxy address, change scheme and host in requests
 		req := c.Request
 		proxy, err := url.Parse(getLoadBalanceAddr())
 		if err != nil {

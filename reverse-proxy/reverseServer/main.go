@@ -53,6 +53,7 @@ func main() {
 				c.Header(k, v)
 			}
 		}
+		c.Status(resp.StatusCode)
 		defer func() { _ = resp.Body.Close() }()
 		_, _ = bufio.NewReader(resp.Body).WriteTo(c.Writer)
 	})

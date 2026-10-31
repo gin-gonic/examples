@@ -32,7 +32,10 @@ func main() {
 		c.String(http.StatusOK, "pong")
 	})
 
-	// port is validated by portPattern above
-	log.Printf("Listening on port %s", port) //nolint:gosec
+	//nolint:gosec // PORT is restricted to digits by portPattern above.
+	log.Printf(
+		"Listening on port %s",
+		port,
+	)
 	_ = r.Run(":" + port)
 }

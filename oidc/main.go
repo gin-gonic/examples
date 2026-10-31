@@ -118,7 +118,20 @@ func main() {
 
 		// Use access token to get user information
 		client := oauth2Config.Client(context.Background(), token)
-		resp, err := client.Get(userInfoURL)
+		req, err := http.NewRequestWithContext(
+			c.Request.Context(),
+			http.MethodGet,
+			userInfoURL,
+			nil,
+		)
+		if err != nil {
+			c.String(
+				http.StatusInternalServerError,
+				"Unable to create user information request: "+err.Error(),
+			)
+			return
+		}
+		resp, err := client.Do(req)
 		if err != nil {
 			c.String(
 				http.StatusInternalServerError,
@@ -156,5 +169,7 @@ func main() {
 
 	// Start server
 	log.Println("Server running at http://localhost:8080")
-	r.Run(":8080")
+	if err := r.Run(":8080"); err != nil {
+		log.Fatal(err)
+	}
 }

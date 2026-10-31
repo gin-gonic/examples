@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"time"
@@ -37,7 +36,7 @@ func CORSMiddleware() gin.HandlerFunc {
 		c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
 
 		// Handle preflight OPTIONS request.
-		if c.Request.Method == "OPTIONS" {
+		if c.Request.Method == http.MethodOptions {
 			// Cache preflight response for 24 hours.
 			c.Writer.Header().Set("Access-Control-Max-Age", "86400")
 
@@ -92,10 +91,7 @@ func main() {
 			keyAction: "Updated",
 
 			// Response message including resource ID.
-			keyMessage: fmt.Sprintf(
-				"Successfully processed PUT for resource ID: %s",
-				id,
-			),
+			keyMessage: "Successfully processed PUT for resource ID: " + id,
 		})
 	})
 
@@ -109,10 +105,7 @@ func main() {
 			keyAction: "Deleted",
 
 			// Response message including resource ID.
-			keyMessage: fmt.Sprintf(
-				"Successfully processed DELETE for resource ID: %s",
-				id,
-			),
+			keyMessage: "Successfully processed DELETE for resource ID: " + id,
 		})
 	})
 

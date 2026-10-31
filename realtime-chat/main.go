@@ -1,9 +1,10 @@
 package main
 
 import (
-	"fmt"
+	"crypto/rand"
 	"io"
-	"math/rand"
+	"log"
+	"math/big"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -21,7 +22,9 @@ func main() {
 	router.DELETE("/room/:roomid", roomDELETE)
 	router.GET("/stream/:roomid", stream)
 
-	router.Run(":8080")
+	if err := router.Run(":8080"); err != nil {
+		log.Fatal(err)
+	}
 }
 
 func stream(c *gin.Context) {
@@ -43,7 +46,12 @@ func stream(c *gin.Context) {
 
 func roomGET(c *gin.Context) {
 	roomid := c.Param("roomid")
-	userid := fmt.Sprint(rand.Int31())
+	id, err := rand.Int(rand.Reader, big.NewInt(1<<31))
+	if err != nil {
+		c.AbortWithStatus(http.StatusInternalServerError)
+		return
+	}
+	userid := id.String()
 	c.HTML(http.StatusOK, "chat_room", gin.H{
 		"roomid": roomid,
 		"userid": userid,

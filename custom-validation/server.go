@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+	"reflect"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -16,7 +17,7 @@ type Booking struct {
 }
 
 var bookableDate validator.Func = func(fl validator.FieldLevel) bool {
-	date, ok := fl.Field().Interface().(time.Time)
+	date, ok := reflect.TypeAssert[time.Time](fl.Field())
 	if ok {
 		today := time.Now()
 		if today.After(date) {

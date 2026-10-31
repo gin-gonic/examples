@@ -24,9 +24,11 @@ func statsWorker() {
 		var stats runtime.MemStats
 		runtime.ReadMemStats(&stats)
 
+		timestamp := max(time.Now().Unix(), 0)
+
 		mutexStats.Lock()
 		savedStats = map[string]uint64{
-			"timestamp":  uint64(time.Now().Unix()),
+			"timestamp":  uint64(timestamp),
 			"HeapInuse":  stats.HeapInuse,
 			"StackInuse": stats.StackInuse,
 			"Mallocs":    stats.Mallocs - lastMallocs,

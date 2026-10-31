@@ -23,7 +23,7 @@ func main() {
 					<body>
 		`))
 		w.(http.Flusher).Flush()
-		for i := 0; i < 10; i++ {
+		for i := range 10 {
 			_, _ = fmt.Fprintf(w, `
 				<h1>%d</h1>
 			`, i)

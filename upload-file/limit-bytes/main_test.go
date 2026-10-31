@@ -35,7 +35,7 @@ func TestUploadWithinLimit(t *testing.T) {
 	// Reduce file size so the total request (including multipart headers/overhead) is safely below the limit.
 	contentType, body := createMultipartBody("file", MaxUploadSize-10*1024)
 	req, _ := http.NewRequestWithContext(
-		context.Background(), "POST", "/upload", bytes.NewReader(body),
+		context.Background(), http.MethodPost, "/upload", bytes.NewReader(body),
 	)
 	req.Header.Set("Content-Type", contentType)
 	resp := httptest.NewRecorder()
@@ -53,7 +53,7 @@ func TestUploadOverLimit(t *testing.T) {
 	router := setupRouter()
 	contentType, body := createMultipartBody("file", MaxUploadSize+100)
 	req, _ := http.NewRequestWithContext(
-		context.Background(), "POST", "/upload", bytes.NewReader(body),
+		context.Background(), http.MethodPost, "/upload", bytes.NewReader(body),
 	)
 	req.Header.Set("Content-Type", contentType)
 	resp := httptest.NewRecorder()
@@ -72,7 +72,7 @@ func TestUploadMissingFile(t *testing.T) {
 	var b bytes.Buffer
 	w := multipart.NewWriter(&b)
 	_ = w.Close()
-	req, _ := http.NewRequestWithContext(context.Background(), "POST", "/upload", &b)
+	req, _ := http.NewRequestWithContext(context.Background(), http.MethodPost, "/upload", &b)
 	req.Header.Set("Content-Type", w.FormDataContentType())
 	resp := httptest.NewRecorder()
 

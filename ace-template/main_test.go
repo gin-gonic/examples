@@ -13,7 +13,7 @@ func TestAceTemplate(t *testing.T) {
 	router := setupRouter()
 
 	w := httptest.NewRecorder()
-	req, _ := http.NewRequestWithContext(context.Background(), "GET", "/ace-example", nil)
+	req, _ := http.NewRequestWithContext(context.Background(), http.MethodGet, "/ace-example", nil)
 	router.ServeHTTP(w, req)
 
 	expected := "<!DOCTYPE html><html><body><h1>Hello Ace & Gin</h1></body></html>"

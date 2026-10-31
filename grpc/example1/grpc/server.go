@@ -1,12 +1,12 @@
 package main
 
 import (
+	"context"
 	"log"
 	"net"
 
 	v1 "github.com/gin-gonic/examples/grpc/example1/gen/helloworld/v1"
 
-	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )
@@ -22,7 +22,8 @@ func (s *server) SayHello(ctx context.Context, in *v1.HelloRequest) (*v1.HelloRe
 }
 
 func main() {
-	lis, err := net.Listen("tcp", ":50051")
+	var lc net.ListenConfig
+	lis, err := lc.Listen(context.Background(), "tcp", ":50051")
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}

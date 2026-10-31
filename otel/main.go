@@ -2,19 +2,17 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-
 	"go.opentelemetry.io/contrib/instrumentation/github.com/gin-gonic/gin/otelgin"
 	"go.opentelemetry.io/otel"
 	sdktrace "go.opentelemetry.io/otel/sdk/trace"
 	"go.opentelemetry.io/otel/trace"
 )
 
-var applicationName string = "demo"
+var applicationName = "demo"
 
 func main() {
 	otel.SetTracerProvider(
@@ -28,7 +26,7 @@ func main() {
 
 	app.GET("/", func(ctx *gin.Context) {
 		traceID, spanID, isSampled := GetTraceInfo(ctx)
-		fmt.Printf("traceID: %v; spanID: %v; isSampled: %v\n", traceID, spanID, isSampled)
+		log.Printf("traceID: %v; spanID: %v; isSampled: %v\n", traceID, spanID, isSampled)
 	})
 
 	go func() {
@@ -37,10 +35,23 @@ func main() {
 		}
 	}()
 
-	http.Get("http://localhost:8080/")
+	req, err := http.NewRequestWithContext(
+		context.Background(),
+		http.MethodGet,
+		"http://localhost:8080/",
+		nil,
+	)
+	if err != nil {
+		log.Fatal(err)
+	}
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer resp.Body.Close()
 }
 
-func GetTraceInfo(ctx context.Context) (traceID string, spanID string, isSampled bool) {
+func GetTraceInfo(ctx context.Context) (traceID, spanID string, isSampled bool) {
 	spanCtx := trace.SpanContextFromContext(ctx)
 
 	if spanCtx.HasTraceID() {

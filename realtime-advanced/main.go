@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"runtime"
 
 	"github.com/gin-gonic/gin"
@@ -17,7 +17,7 @@ func main() {
 func ConfigRuntime() {
 	nuCPU := runtime.NumCPU()
 	runtime.GOMAXPROCS(nuCPU)
-	fmt.Printf("Running with %d CPUs\n", nuCPU)
+	log.Printf("Running with %d CPUs\n", nuCPU)
 }
 
 // StartWorkers start starsWorker by goroutine.
@@ -38,5 +38,7 @@ func StartGin() {
 	router.POST("/room-post/:roomid", roomPOST)
 	router.GET("/stream/:roomid", streamRoom)
 
-	router.Run(":80")
+	if err := router.Run(":80"); err != nil {
+		log.Fatal(err)
+	}
 }

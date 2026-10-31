@@ -9,13 +9,23 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 )
 
 func main() {
+	if err := run(); err != nil {
+		log.Fatal(err)
+	}
+}
+
+func run() error {
 	// Set up a connection to the server.
-	conn, err := grpc.Dial("localhost:50051", grpc.WithInsecure())
+	conn, err := grpc.NewClient(
+		"localhost:50051",
+		grpc.WithTransportCredentials(insecure.NewCredentials()),
+	)
 	if err != nil {
-		log.Fatalf("did not connect: %v", err)
+		return fmt.Errorf("create gRPC client: %w", err)
 	}
 	defer conn.Close()
 	client := v1.NewGreeterClient(conn)
@@ -36,12 +46,13 @@ func main() {
 		}
 
 		c.JSON(http.StatusOK, gin.H{
-			"result": fmt.Sprint(res.Message),
+			"result": res.Message,
 		})
 	})
 
 	// Run http server
 	if err := r.Run(":8080"); err != nil {
-		log.Fatalf("could not run server: %v", err)
+		return fmt.Errorf("run HTTP server: %w", err)
 	}
+	return nil
 }

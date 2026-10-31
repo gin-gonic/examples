@@ -89,7 +89,7 @@ func NewServer() (event *Event) {
 
 	go event.listen()
 
-	return
+	return event
 }
 
 // It Listens all incoming requests from clients.

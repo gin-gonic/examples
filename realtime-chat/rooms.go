@@ -5,13 +5,13 @@ import (
 )
 
 type Message struct {
-	UserId string
-	RoomId string
+	UserID string
+	RoomID string
 	Text   string
 }
 
 type Listener struct {
-	RoomId string
+	RoomID string
 	Chan   chan any
 }
 
@@ -46,17 +46,17 @@ func (m *Manager) run() {
 		case roomid := <-m.delete:
 			m.deleteBroadcast(roomid)
 		case message := <-m.messages:
-			m.room(message.RoomId).Submit(message.UserId + ": " + message.Text)
+			m.room(message.RoomID).Submit(message.UserID + ": " + message.Text)
 		}
 	}
 }
 
 func (m *Manager) register(listener *Listener) {
-	m.room(listener.RoomId).Register(listener.Chan)
+	m.room(listener.RoomID).Register(listener.Chan)
 }
 
 func (m *Manager) deregister(listener *Listener) {
-	m.room(listener.RoomId).Unregister(listener.Chan)
+	m.room(listener.RoomID).Unregister(listener.Chan)
 	close(listener.Chan)
 }
 
@@ -80,7 +80,7 @@ func (m *Manager) room(roomid string) broadcast.Broadcaster {
 func (m *Manager) OpenListener(roomid string) chan any {
 	listener := make(chan any)
 	m.open <- &Listener{
-		RoomId: roomid,
+		RoomID: roomid,
 		Chan:   listener,
 	}
 	return listener
@@ -88,7 +88,7 @@ func (m *Manager) OpenListener(roomid string) chan any {
 
 func (m *Manager) CloseListener(roomid string, channel chan any) {
 	m.close <- &Listener{
-		RoomId: roomid,
+		RoomID: roomid,
 		Chan:   channel,
 	}
 }
@@ -99,8 +99,8 @@ func (m *Manager) DeleteBroadcast(roomid string) {
 
 func (m *Manager) Submit(userid, roomid, text string) {
 	msg := &Message{
-		UserId: userid,
-		RoomId: roomid,
+		UserID: userid,
+		RoomID: roomid,
 		Text:   text,
 	}
 	m.messages <- msg

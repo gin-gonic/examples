@@ -25,7 +25,7 @@ func main() {
 
 		// Bind file
 		if err := c.ShouldBind(&bindFile); err != nil {
-			c.String(http.StatusBadRequest, fmt.Sprintf("err: %s", err.Error()))
+			c.String(http.StatusBadRequest, "err: "+err.Error())
 			return
 		}
 
@@ -33,7 +33,7 @@ func main() {
 		file := bindFile.File
 		dst := filepath.Base(file.Filename)
 		if err := c.SaveUploadedFile(file, dst); err != nil {
-			c.String(http.StatusBadRequest, fmt.Sprintf("upload file err: %s", err.Error()))
+			c.String(http.StatusBadRequest, "upload file err: "+err.Error())
 			return
 		}
 

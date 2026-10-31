@@ -2,11 +2,14 @@ package main
 
 import (
 	"flag"
+	"log"
 	"net/http"
 	"os"
 
 	"github.com/gin-gonic/gin"
 )
+
+const messageKey = "message"
 
 func main() {
 	enableAdmin := flag.Bool("admin", false, "Enable admin routes")
@@ -19,7 +22,7 @@ func main() {
 	// Public routes
 	r.GET("/", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
-			"message": "Welcome to Gin",
+			messageKey: "Welcome to Gin",
 		})
 	})
 
@@ -35,13 +38,13 @@ func main() {
 		{
 			admin.GET("/users", func(c *gin.Context) {
 				c.JSON(http.StatusOK, gin.H{
-					"message": "Admin users endpoint",
+					messageKey: "Admin users endpoint",
 				})
 			})
 
 			admin.GET("/settings", func(c *gin.Context) {
 				c.JSON(http.StatusOK, gin.H{
-					"message": "Admin settings endpoint",
+					messageKey: "Admin settings endpoint",
 				})
 			})
 		}
@@ -57,5 +60,5 @@ func main() {
 		})
 	}
 
-	r.Run(":8080")
+	log.Fatal(r.Run(":8080"))
 }

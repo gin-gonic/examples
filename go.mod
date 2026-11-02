@@ -8,6 +8,7 @@ require (
 	github.com/gin-gonic/autotls v1.1.2
 	github.com/gin-gonic/gin v1.10.1
 	github.com/go-playground/validator/v10 v10.26.0
+	github.com/google/uuid v1.6.0
 	github.com/stretchr/testify v1.11.1
 	github.com/yosssi/ace v0.0.5
 	go.uber.org/ratelimit v0.3.1
